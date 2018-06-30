@@ -1,6 +1,6 @@
 import axios from "../axios";
 
-import { setPlayers, editPlayer, removePlayer, addPlayer } from "./state";
+import { setPlayers, editPlayer, removePlayer, addPlayer, resetPlayers, makeTeams } from "./state";
 
 export const getPlayers = () => dispatch => {
   axios.get("/players").then(({ data }) => {
@@ -32,5 +32,18 @@ export const patchPlayer = (id, player_name, skill) => dispatch => {
 export const deletePlayer = (id) => dispatch => {
   axios.delete(`/players/${id}`).then(() => {
     dispatch(removePlayer(id));
+  });
+};
+
+export const deletePlayers = () => dispatch => {
+  axios.delete("/players").then(() => {
+    dispatch(resetPlayers());
+  });
+};
+
+export const assignTeams = () => dispatch => {
+  axios.get("/players/teams").then(({ data }) => {
+    const players = data
+    dispatch(makeTeams(players));
   });
 };

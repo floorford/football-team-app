@@ -41,12 +41,37 @@ const removePlayer = (state, { id }) => {
   };
 };
 
+const resetPlayers = (state, action) => {
+  let reset = []
+
+  return {
+    ...state,
+    players: reset
+  };
+};
+
+const makeTeams = (state, { players }) => {
+  let list = players;
+
+  let teamOne = list.filter(listItem => listItem.team === 1);
+  let teamTwo = list.filter(listItem => listItem.team === 2);
+
+  return {
+    ...state,
+    players: players,
+    teamOne: teamOne,
+    teamTwo: teamTwo
+  };
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "setPlayers": return setPlayers(state, action);
     case "addPlayer": return addPlayer(state, action);
     case "editPlayer": return editPlayer(state, action);
     case "removePlayer": return removePlayer(state, action);
+    case "resetPlayers": return resetPlayers(state, action);
+    case "makeTeams": return makeTeams(state, action);
     default: return state;
   }
 };

@@ -62,6 +62,8 @@ constructor(props) {
     const { player } = this.props;
     const { editing, value } = this.state;
 
+    let skill = player.skill === 1 ? "Poor" : player.skill === 2 ? "Average" : "Good";
+
     return (
       <React.Fragment>
         { editing ?
@@ -76,7 +78,7 @@ constructor(props) {
           <p style={{display: "inline-block", marginLeft: "5px", marginRight: "10px" }}>{ player.player_name }</p> }
         <button onClick={ this.handleEdit } style={{ margin: "4px" }}>Edit</button>
         <button onClick={ this.handleDelete } style={{ margin: "4px" }}>Delete</button>
-        <p style={{display: "block", marginLeft: "5px", marginRight: "10px" }}>Skill level: { player.skill }</p>
+        <p style={{display: "block", marginLeft: "5px", marginRight: "10px" }}>Skill level: { skill }</p>
       </React.Fragment>
     )
   }

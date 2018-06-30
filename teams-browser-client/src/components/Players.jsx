@@ -53,13 +53,13 @@ class Players extends Component {
   handleWipe(e) {
     e.preventDefault();
 
-    console.log("wipe")
+    this.props.onWipe();
   }
 
   handleAssign(e) {
     e.preventDefault();
 
-    console.log("assign")
+    this.props.onAssign();
   }
 
   render() {

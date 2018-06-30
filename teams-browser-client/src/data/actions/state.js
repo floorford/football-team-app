@@ -25,3 +25,16 @@ export const removePlayer = (id) => {
     id: id
   };
 };
+
+export const resetPlayers = () => {
+  return {
+    type: "resetPlayers",
+  };
+};
+
+export const makeTeams = (players) => {
+  return {
+    type: "makeTeams",
+    players: players,
+  };
+};
