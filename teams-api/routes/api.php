@@ -1,18 +1,16 @@
 <?php
 
-use Illuminate\Http\Request;
+// we can group all our players routes together
+$router->group(["prefix" => "players"], function ($router) {
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+  // use the post method
+  // when the use request /players - don't need the forward slash
+  // which will call the store method of the Players controller
+  $router->post("", "Players@store");
+  $router->get("", "Players@index");
+  $router->delete("", "Players@wipe");
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+  // {player} is a url parameter representing the id we want
+  $router->delete("{player}", "Players@destroy");
+  $router->patch("{player}", "Players@update");
 });
