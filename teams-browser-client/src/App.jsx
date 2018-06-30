@@ -1,13 +1,23 @@
 import React from "react";
 
 import Players from "./containers/Players";
+import Header from "./components/Header";
+import Teams from "./containers/Teams";
+
+import {
+  BrowserRouter as Router,
+  Route,
+} from "react-router-dom";
 
 const App = () => (
-  <React.Fragment>
-    { /* header should show on all pages */ }
-    <header><h1 style={{ textAlign: "center" }}>Create Your Team!</h1></header>
-    <Players/>
-  </React.Fragment>
+  <Router>
+    <React.Fragment>
+      { /* header should show on all pages */ }
+      <Header>nth Aside Team Generator</Header>
+      <Route exact path="/" component={ Players }/>
+      <Route path="/my-teams" component={ Teams }/>
+    </React.Fragment>
+  </Router>
 );
 
 export default App;

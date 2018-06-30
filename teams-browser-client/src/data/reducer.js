@@ -51,16 +51,9 @@ const resetPlayers = (state, action) => {
 };
 
 const makeTeams = (state, { players }) => {
-  let list = players;
-
-  let teamOne = list.filter(listItem => listItem.team === 1);
-  let teamTwo = list.filter(listItem => listItem.team === 2);
-
   return {
     ...state,
     players: players,
-    teamOne: teamOne,
-    teamTwo: teamTwo
   };
 };
 

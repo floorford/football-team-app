@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import { Link } from "react-router-dom";
+
 import Player from "../containers/Player";
 
 class Players extends Component {
@@ -56,9 +58,7 @@ class Players extends Component {
     this.props.onWipe();
   }
 
-  handleAssign(e) {
-    e.preventDefault();
-
+  handleAssign() {
     this.props.onAssign();
   }
 
@@ -79,9 +79,9 @@ class Players extends Component {
         <form onSubmit={ this.handleWipe } style={{ textAlign: "center", marginBottom: "25px" }}>
           <button style={{ margin: "4px" }}>Remove all players</button>
         </form>
-        <form onSubmit={ this.handleAssign } style={{ textAlign: "center", marginBottom: "25px" }}>
-          <button style={{ margin: "4px" }}>Make your teams</button>
-        </form>
+        <Link to="/my-teams">
+          <button onClick={ this.handleAssign } type="button" style={{ margin: "4px" }}>Make your teams</button>
+        </Link>
         { /* check there are players to show */ }
         { players.length ?
           <ul className="list-group">
