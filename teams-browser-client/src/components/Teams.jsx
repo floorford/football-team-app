@@ -19,6 +19,9 @@ class Teams extends Component {
       <React.Fragment>
         { players.length ?
           <div>
+            <Link to="/">
+              <button type="button" style={{ margin: "4px" }}>Change your players</button>
+            </Link>
             <h2>Team One</h2>
             <h4>Team Skill Level: { skill }</h4>
             <ul>
@@ -35,7 +38,7 @@ class Teams extends Component {
             </ul>
           </div>
         :
-        <p>Something went wrong, please return to the <Link to="/">team creator</Link> and begin again</p>
+        <p>You can't have teams without players! Go to the <Link to="/">team creator</Link> to add some.</p>
       }
       </React.Fragment>
     )

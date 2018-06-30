@@ -76,23 +76,25 @@ class Players extends Component {
           <input type="radio" onClick={ this.handleRadio } name="skill" value="3"/>Good
           <button style={{ margin: "4px" }}>Add</button>
         </form>
-        <form onSubmit={ this.handleWipe } style={{ textAlign: "center", marginBottom: "25px" }}>
-          <button style={{ margin: "4px" }}>Remove all players</button>
-        </form>
-        <Link to="/my-teams">
-          <button onClick={ this.handleAssign } type="button" style={{ margin: "4px" }}>Make your teams</button>
-        </Link>
         { /* check there are players to show */ }
         { players.length ?
-          <ul className="list-group">
-            { /* map over each player and display a list item for each one */ }
-            { players.map(player => (
-              <li className="list-group-item" key={ player.id }>
-              { /* link to the player using its id */ }
-                <Player player={ player }/>
-              </li>
-            ))}
-          </ul>
+          <div>
+            <form onSubmit={ this.handleWipe } style={{ textAlign: "center", marginBottom: "25px" }}>
+              <button style={{ margin: "4px" }}>Remove all players</button>
+            </form>
+            <Link to="/my-teams">
+              <button onClick={ this.handleAssign } type="button" style={{ margin: "4px" }}>Make your teams</button>
+            </Link>
+            <ul className="list-group">
+              { /* map over each player and display a list item for each one */ }
+              { players.map(player => (
+                <li className="list-group-item" key={ player.id }>
+                { /* link to the player using its id */ }
+                  <Player player={ player }/>
+                </li>
+              ))}
+            </ul>
+          </div>
           :
           <p>There are no players, add some above to get creating your teams!</p>
         }
