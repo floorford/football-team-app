@@ -20,6 +20,7 @@ class PlayerResource extends JsonResource
       "id" => $this->id,
       "player_name" => $this->player_name,
       "skill" => $this->skill,
+      "team" => $this->team,
     ];
   }
 }

@@ -41,6 +41,30 @@ class Players extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @return App\Http\Resources\PlayerResource
+     */
+    public function assign()
+    {
+      // get all the players and sort them by skill
+      $players = Player::orderBy('skill')->get();
+
+      // assign a 1 to the team key for all even indexed players and a 2 to all odd indexed players
+      foreach($players as $key => $item){
+        if ($key % 2 === 0) {
+          $item->team = 1;
+          $item->fill(["team"])->save();
+        } else {
+          $item->team = 2;
+          $item->fill(["team"])->save();        }
+      };
+
+      // return the players array of objects with the new assignments
+      return Player::all();
+    }
+
+    /**
      * Delete all players in the database
      */
     public function wipe()

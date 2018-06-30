@@ -13,4 +13,5 @@ $router->group(["prefix" => "players"], function ($router) {
   // {player} is a url parameter representing the id we want
   $router->delete("{player}", "Players@destroy");
   $router->patch("{player}", "Players@update");
+  $router->get("teams", "Players@assign");
 });
