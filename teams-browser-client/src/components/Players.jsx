@@ -66,6 +66,8 @@ class Players extends Component {
     let { players } = this.props;
     const { value } = this.state;
 
+    let disabled = true ? value.length < 1 : false
+
     return(
       <React.Fragment>
         <form className="form" onSubmit={ this.handleSubmit }>
@@ -83,8 +85,9 @@ class Players extends Component {
             <input className="radio" onClick={ this.handleRadio } name="skill" type="radio" value="3" id="good"/>
             Good
           </label>
-          <button className="solo-buttons btn btn-info">Add</button>
+          <button className="solo-buttons btn btn-info" disabled={ disabled }>Add</button>
         </form>
+        { value.length < 1 ? <p className="validation alert alert-secondary">Please enter a player name and select and skill level. Max 100 characters</p> : null }
         { /* check there are players to show */ }
         { players.length ?
           <div>
@@ -95,7 +98,7 @@ class Players extends Component {
               </Link>
             </div>
             <div className="player-grid">
-              { /* map over each player and display a card for each one */ }
+              { /* map over each player and display a section for each one */ }
               { players.map(player => (
                 <div className="players" key={ player.id }>
                 { /* link to the player using its id */ }

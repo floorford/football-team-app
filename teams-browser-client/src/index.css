@@ -39,6 +39,13 @@ body {
 
 /* Players Component */
 
+.validation {
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  margin: 0px 21% 0px 21%;
+}
+
 .player-grid {
   display: grid;
   justify-items: center;
@@ -74,6 +81,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .btn-group {
