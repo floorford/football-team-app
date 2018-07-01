@@ -32,7 +32,7 @@ class Players extends Component {
   }
 
   handleRadio(e) {
-    let input = e.target.value;
+    let input = +e.target.value;
 
     this.setState({
       checked: input,
@@ -68,35 +68,44 @@ class Players extends Component {
 
     return(
       <React.Fragment>
-        <form onSubmit={ this.handleSubmit } style={{ textAlign: "center", marginBottom: "25px" }}>
-          <label htmlFor="player_name" style={{ display: "block" }}>Add a player: </label>
-          <input id="player_name" onChange={ this.handleChange } value={ value }></input>
-          <input type="radio" onClick={ this.handleRadio } name="skill" value="1"/>Poor
-          <input type="radio" onClick={ this.handleRadio } name="skill" value="2"/>Average
-          <input type="radio" onClick={ this.handleRadio } name="skill" value="3"/>Good
-          <button style={{ margin: "4px" }}>Add</button>
+        <form className="form" onSubmit={ this.handleSubmit }>
+          <label className="label" htmlFor="player_name">Add a player: </label>
+          <input className="main input" id="player_name" onChange={ this.handleChange } value={ value }></input>
+          <label className="label" htmlFor="poor">
+            <input className="radio" onClick={ this.handleRadio } type="radio" value="1" id="poor"/>
+            Poor
+          </label>
+          <label className="label" htmlFor="average">
+            <input className="radio" onClick={ this.handleRadio } type="radio" value="2" id="average"/>
+            Average
+          </label>
+          <label className="label" htmlFor="good">
+            <input className="radio" onClick={ this.handleRadio } type="radio" value="3" id="good"/>
+            Good
+          </label>
+          <button className="solo-buttons btn btn-info">Add</button>
         </form>
         { /* check there are players to show */ }
         { players.length ?
           <div>
-            <form onSubmit={ this.handleWipe } style={{ textAlign: "center", marginBottom: "25px" }}>
-              <button style={{ margin: "4px" }}>Remove all players</button>
-            </form>
-            <Link to="/my-teams">
-              <button onClick={ this.handleAssign } type="button" style={{ margin: "4px" }}>Make your teams</button>
-            </Link>
-            <ul className="list-group">
-              { /* map over each player and display a list item for each one */ }
+            <div className="btn-group">
+              <button onClick={ this.handleWipe } className="btn btn-danger group">Remove all players</button>
+              <Link to="/my-teams">
+                <button className="btn btn-success group" onClick={ this.handleAssign } type="button">Make your teams</button>
+              </Link>
+            </div>
+            <div className="player-grid">
+              { /* map over each player and display a card for each one */ }
               { players.map(player => (
-                <li className="list-group-item" key={ player.id }>
+                <div className="players" key={ player.id }>
                 { /* link to the player using its id */ }
                   <Player player={ player }/>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
           :
-          <p>There are no players, add some above to get creating your teams!</p>
+          <p className="error">There are no players, add some above to get creating your teams!</p>
         }
       </React.Fragment>
     )

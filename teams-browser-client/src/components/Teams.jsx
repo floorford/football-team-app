@@ -20,7 +20,7 @@ class Teams extends Component {
         { players.length ?
           <div>
             <Link to="/">
-              <button type="button" style={{ margin: "4px" }}>Change your players</button>
+              <button type="button">Change your players</button>
             </Link>
             <h2>Team One</h2>
             <h4>Team Skill Level: { skill }</h4>

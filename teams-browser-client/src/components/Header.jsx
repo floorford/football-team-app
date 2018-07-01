@@ -1,8 +1,9 @@
 import React from "react";
+import '../index.css';
 
 const Header = ({ children }) => (
-  <header>
-    <h1 style={{ textAlign: "center" }}>
+  <header className="header">
+    <h1>
       { children }
     </h1>
   </header>
