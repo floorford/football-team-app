@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Scope One', serif;
   background-image: url("./assets/stadium-918830_1920.jpg");
   /* background-image: url("./assets/soccer-1859046_1920.jpg"); */
 }
@@ -19,11 +19,9 @@ body {
   margin-right: 10px;
   margin-bottom: 0px;
   display: inline-flex;
-  font-family: 'Scope One', serif;
 }
 
 .input {
-  font-family: 'Scope One', serif;
   font-size: 2rem;
   max-width: 158px;
   margin-left: 81px;
@@ -36,7 +34,7 @@ body {
 
 .header {
   text-align: center;
-  font-family: 'Scope One', serif;
+  text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
 }
 
 /* Players Component */
@@ -76,7 +74,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Scope One', serif;
 }
 
 .btn-group {
@@ -95,8 +92,7 @@ body {
 }
 
 .error {
-  font-family: 'Scope One', serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
   margin-top: 10px;
 }
@@ -104,12 +100,10 @@ body {
 /* Player Component */
 
 .player {
-  font-family: 'Scope One', serif;
   font-size: 2rem;
 }
 
 .player-skill {
-  font-family: 'Scope One', serif;
   color: white;
 }
 
@@ -125,4 +119,49 @@ body {
   font-size: .75em;
   display: inline;
   margin: 6px;
+}
+
+/* Teams Component */
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  margin: 25px;
+  text-align: center;
+  margin-bottom: 50px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.one {
+  background: hsla(349, 100%, 69%, 0.38);
+}
+
+.two {
+  background: hsla(215, 100%, 39%, 0.38);
+}
+
+.team1 {
+  grid-area: 1 / 1 / 1 / 5;
+}
+
+.team-skill1 {
+  grid-area: 2 / 1 / 2 / 5;
+}
+
+.team2 {
+  grid-area: 1 / 1 / 1 / 5;
+}
+
+.team-skill2 {
+  grid-area: 2 / 1 / 2 / 5;
+}
+
+.team-group {
+  font-size: 1.2rem;
 }

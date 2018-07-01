@@ -72,15 +72,15 @@ class Players extends Component {
           <label className="label" htmlFor="player_name">Add a player: </label>
           <input className="main input" id="player_name" onChange={ this.handleChange } value={ value }></input>
           <label className="label" htmlFor="poor">
-            <input className="radio" onClick={ this.handleRadio } type="radio" value="1" id="poor"/>
+            <input className="radio" onClick={ this.handleRadio } name="skill" type="radio" value="1" id="poor"/>
             Poor
           </label>
           <label className="label" htmlFor="average">
-            <input className="radio" onClick={ this.handleRadio } type="radio" value="2" id="average"/>
+            <input className="radio" onClick={ this.handleRadio } name="skill" type="radio" value="2" id="average"/>
             Average
           </label>
           <label className="label" htmlFor="good">
-            <input className="radio" onClick={ this.handleRadio } type="radio" value="3" id="good"/>
+            <input className="radio" onClick={ this.handleRadio } name="skill" type="radio" value="3" id="good"/>
             Good
           </label>
           <button className="solo-buttons btn btn-info">Add</button>

@@ -19,27 +19,33 @@ class Teams extends Component {
       <React.Fragment>
         { players.length ?
           <div>
-            <Link to="/">
-              <button type="button">Change your players</button>
-            </Link>
-            <h2>Team One</h2>
-            <h4>Team Skill Level: { skill }</h4>
-            <ul>
-              { teamOne.map((player, i) => (
-                <li key={ i }>{ player.player_name }</li>
-              ))}
-            </ul>
-            <h2>Team Two</h2>
-            <h4>Team Skill Level: { skill }</h4>
-            <ul>
-              { teamTwo.map((player, i) => (
-                <li key={ i }>{ player.player_name }</li>
-              ))}
-            </ul>
+            <div class="wrapper">
+              <Link to="/">
+                <button className="btn btn-info" type="button">Change your players</button>
+              </Link>
+            </div>
+            <div className="team-grid one">
+              <h2 className="team1">Team One</h2>
+              <p className="player-skill team-skill1">Team Skill Level: { skill }</p>
+                { teamOne.map((player, i) => (
+                  <div className="team-group" key={ i }>
+                    <span>{ player.player_name }</span>
+                  </div>
+                ))}
+            </div>
+            <div className="team-grid two">
+              <h2 className="team2">Team Two</h2>
+              <p className="player-skill team-skill2">Team Skill Level: { skill }</p>
+                { teamTwo.map((player, i) => (
+                  <div className="team-group" key={ i }>
+                    <span>{ player.player_name }</span>
+                  </div>
+                ))}
+            </div>
           </div>
-        :
-        <p>You can't have teams without players! Go to the <Link to="/">team creator</Link> to add some.</p>
-      }
+          :
+          <p className="error">You can't have teams without players! Go to the <Link to="/">team creator</Link> to add some.</p>
+        }
       </React.Fragment>
     )
   }
