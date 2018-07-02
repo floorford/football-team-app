@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ScrollView, View, Text, StyleSheet, TouchableHighlight } from "react-native";
+import { ScrollView, View, Text, StyleSheet, TouchableHighlight, FlatList } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { WebBrowser } from 'expo';
 

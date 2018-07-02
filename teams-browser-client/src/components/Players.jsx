@@ -10,10 +10,11 @@ class Players extends Component {
 
     this.state = {
       value: "",
+      check: null,
     }
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleRadio = this.handleRadio.bind(this);
+    this.handleRadio2 = this.handleRadio2.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleWipe = this.handleWipe.bind(this);
     this.handleAssign = this.handleAssign.bind(this);
@@ -23,6 +24,7 @@ class Players extends Component {
     this.props.onLoad();
   }
 
+
   handleChange(e) {
     let input = e.target.value;
 
@@ -31,11 +33,11 @@ class Players extends Component {
     });
   }
 
-  handleRadio(e) {
-    let input = +e.target.value;
+  handleRadio2(e, i) {
+    let input = +i;
 
     this.setState({
-      checked: input,
+      check: input,
     });
   }
 
@@ -43,12 +45,13 @@ class Players extends Component {
     e.preventDefault();
 
     let player_name = this.state.value;
-    let skill = this.state.checked
+    let skill = this.state.check
 
     this.props.onSubmit(player_name, skill);
 
     this.setState({
-      value: ""
+      value: "",
+      check: null
     });
   }
 
@@ -66,28 +69,53 @@ class Players extends Component {
     let { players } = this.props;
     const { value } = this.state;
 
-    let disabled = true ? value.length < 1 : false
+    let disabled = true ? (value.length < 1 || this.state.check === null) : false;
 
     return(
       <React.Fragment>
         <form className="form" onSubmit={ this.handleSubmit }>
           <label className="label" htmlFor="player_name">Add a player: </label>
           <input className="main input" id="player_name" onChange={ this.handleChange } value={ value }></input>
-          <label className="label" htmlFor="poor">
-            <input className="radio" onClick={ this.handleRadio } name="skill" type="radio" value="1" id="poor"/>
-            Poor
-          </label>
-          <label className="label" htmlFor="average">
-            <input className="radio" onClick={ this.handleRadio } name="skill" type="radio" value="2" id="average"/>
-            Average
-          </label>
-          <label className="label" htmlFor="good">
-            <input className="radio" onClick={ this.handleRadio } name="skill" type="radio" value="3" id="good"/>
-            Good
-          </label>
+          <div className="radio-pad" onClick={ (e) => this.handleRadio2(e, 1) }>
+            <input className="radio"  name="skill" type="radio" value="1" id="poor"/>
+            <label className="radio-label" htmlFor="poor">
+              Poor
+            </label>
+          </div>
+          <div className="radio-pad" onClick={ (e) => this.handleRadio2(e, 2) }>
+            <input className="radio" name="skill" type="radio" value="2" id="average"/>
+            <label className="radio-label" htmlFor="average">
+              Average
+            </label>
+          </div>
+          <div className="radio-pad" onClick={ (e) => this.handleRadio2(e, 3) }>
+            <input className="radio" name="skill" type="radio" value="3" id="good"/>
+            <label className="radio-label" htmlFor="good">
+              Good
+            </label>
+          </div>
           <button className="solo-buttons btn btn-info" disabled={ disabled }>Add</button>
         </form>
-        { value.length < 1 ? <p className="validation alert alert-secondary">Please enter a player name and select and skill level. Max 100 characters</p> : null }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        { disabled ? <p className="validation alert alert-secondary">Please enter a player name and select and skill level. Max 30 characters</p> : null }
         { /* check there are players to show */ }
         { players.length ?
           <div>

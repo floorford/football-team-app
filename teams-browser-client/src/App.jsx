@@ -13,7 +13,7 @@ const App = () => (
   <Router>
     <React.Fragment>
       { /* header should show on all pages */ }
-      <Header>nth Aside Team Generator</Header>
+      <Header>nth Aside</Header>
       <Route exact path="/" component={ Players }/>
       <Route path="/my-teams" component={ Teams }/>
     </React.Fragment>

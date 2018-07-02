@@ -8,17 +8,24 @@ body {
 
 /* MultiPage Styling */
 
-.radio {
-  color: #AAAAAA;
-  display: block;
-  margin: 2px 9px 0px 0px;
+.radioPad {
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+  border: 2%;
 }
 
-.label {
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 0px;
-  display: inline-flex;
+/* .radio {
+  visibility: hidden;
+} */
+
+.radio-label {
+  background-color: hsla(188, 78.4%, 40%, 1);
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  margin-left: -14px;
 }
 
 .input {
@@ -30,11 +37,22 @@ body {
   text-align: center;
 }
 
+.edit {
+  background-color: transparent;
+  border-style: dashed;
+  margin-top: 4px;
+}
+
+.radio:checked + .radio-label {
+  background: hsla(188, 78.4%, 60%, 1);
+}
+
 /* Header Component */
 
 .header {
   text-align: center;
   text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+  margin: 30px 0px 40px 0px;
 }
 
 /* Players Component */
@@ -87,7 +105,7 @@ body {
 .btn-group {
   display: flex;
   justify-content: center;
-  margin: 10px 0px 10px 0px;
+  margin: 10px 0px 50px 0px;
 }
 
 .group {
@@ -109,10 +127,15 @@ body {
 
 .player {
   font-size: 2rem;
+  margin-bottom: 0px;
 }
 
 .player-skill {
   color: white;
+}
+
+.skill-change {
+  display: inline;
 }
 
 .update {
@@ -124,9 +147,10 @@ body {
 
 .solo-buttons {
   width: 4rem;
-  font-size: .75em;
+  font-size: 01em;
   display: inline;
-  margin: 6px;
+  padding: 9px;
+  margin: -1px 0px 5px 12px;
 }
 
 /* Teams Component */
