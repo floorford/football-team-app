@@ -24,7 +24,7 @@ class PlayerRequest extends FormRequest
   public function rules()
   {
     return [
-      "player_name" => ["required", "string", "max:100"],
+      "player_name" => ["required", "string", "max:30"],
       "skill" => ["required", "integer", "between:1,3"],
     ];
   }
