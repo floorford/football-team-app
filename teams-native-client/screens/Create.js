@@ -1,78 +1,74 @@
-//
-// this.handleChange = this.handleChange.bind(this);
-// this.handleRadio = this.handleRadio.bind(this);
-// this.handleSubmit = this.handleSubmit.bind(this);
-//
-//
-// handleChange(e) {
-//   let input = e.target.value;
-//
-//   this.setState({
-//     value: input,
-//   });
-// }
-//
-// handleRadio(e) {
-//   let input = +e.target.value;
-//
-//   this.setState({
-//     checked: input,
-//   });
-// }
-//
-// handleSubmit(e) {
-//   e.preventDefault();
-//
-//   let player_name = this.state.value;
-//   let skill = this.state.checked
-//
-//   this.props.onSubmit(player_name, skill);
-//
-//   this.setState({
-//     value: ""
-//   });
-// }
-//
-//
-//
-//
-// <form className="form" onSubmit={ this.handleSubmit }>
-//   <label className="label" htmlFor="player_name">Add a player: </label>
-//   <input className="main input" id="player_name" onChange={ this.handleChange } value={ value }></input>
-//   <label className="label" htmlFor="poor">
-//     <input className="radio" onClick={ this.handleRadio } name="skill" type="radio" value="1" id="poor"/>
-//     Poor
-//   </label>
-//   <label className="label" htmlFor="average">
-//     <input className="radio" onClick={ this.handleRadio } name="skill" type="radio" value="2" id="average"/>
-//     Average
-//   </label>
-//   <label className="label" htmlFor="good">
-//     <input className="radio" onClick={ this.handleRadio } name="skill" type="radio" value="3" id="good"/>
-//     Good
-//   </label>
-//   <button className="solo-buttons btn btn-info" disabled={ disabled }>Add</button>
-// </form>
-//
-//       { value.length < 1 ? <p className="validation alert alert-secondary">Please enter a player name and select and skill level. Max 100 characters</p> : null }
-//
-//
-
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, TextInput, Button } from "react-native";
+import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
 
 class Create extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      value: "",
+      skill: "0"
+    }
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    let player_name = this.state.value;
+    let skill = +this.state.skill
+
+    this.props.onSubmit(player_name, skill);
+
+    this.setState({
+      value: "",
+      skill: "0"
+    });
+
+    this.props.navigation.navigate('Players');
+  }
+
   render() {
+
+    let { value, skill } = this.state;
+    let valueError = value.length < 1 || value.length > 30 ? true : false;
+    let skillError = skill === "1" || skill === "2" || skill === "3" ? false : true;
+
     return(
       <View>
-        <Text>Create Page</Text>
+        <FormLabel>Name</FormLabel>
+        <TextInput
+          placeholder='Player Name'
+          autoCapitalize='none'
+          autoCorrect={false}
+          autoFocus={true}
+          keyboardType='default'
+          value={this.state.value}
+          onChangeText={(text) => this.setState({ value: text })} />
+        { valueError ? <FormValidationMessage>{'Name must be between 1 and 30 characters'}</FormValidationMessage> : null }
+        <FormLabel>Skill</FormLabel>
+        <TextInput
+          placeholder='Skill'
+          autoCapitalize='none'
+          keyboardType='number-pad'
+          autoCorrect={false}
+          value={this.state.skill}
+          onChangeText={(num) => this.setState({ skill: num })} />
+        { skillError ? <FormValidationMessage>{'Skill must be between 1 and 3'}</FormValidationMessage> : null }
+        <Button
+          title="Add Player"
+          onPress={this.handleSubmit}
+        />
       </View>
     )
   }
 }
 
 Create.navigationOptions = {
-  title: 'Create a Player',
+  title: 'Add a Player',
 };
 
-export default Create
+export default Create;

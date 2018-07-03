@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TouchableHighlight, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, ScrollView, FlatList } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import Swipeout from 'react-native-swipeout';
 
 class Players extends Component {
   constructor (props) {
@@ -29,11 +31,18 @@ class Players extends Component {
     })
   }
 
-  handleDelete(e) {
-    this.props.onDelete();
+  handleDelete(e, item) {
+    this.props.onDelete(item);
   }
 
   renderItem({ item }) {
+
+    let swipeBtns = [{
+      text: 'Delete',
+      backgroundColor: 'red',
+      underlayColor: 'white',
+      onPress: (e) => { this.handleDelete(e, item) }
+    }];
 
     onPress = (item) => {
       this.props.navigation.navigate('Player', {
@@ -44,16 +53,21 @@ class Players extends Component {
 
     return (
       <View>
-        <TouchableHighlight underlayColor='#e4e4e4' style={ styles.news } onPress={ () => onPress(item) }>
+        <Swipeout right={swipeBtns}
+          autoClose={ true }
+          backgroundColor= 'transparent'
+        >
+        <TouchableHighlight underlayColor='#e4e4e4' style={ styles.players } onPress={ () => onPress(item) }>
           <View>
             <Text style={ styles.text }>
               { item.player_name }
             </Text>
-            <Text style={ styles.text }>
-              { item.skill }
+            <Text style={ styles.skill }>
+              Skill: { item.skill }
             </Text>
           </View>
         </TouchableHighlight>
+        </Swipeout>
       </View>
     );
   }
@@ -66,27 +80,37 @@ class Players extends Component {
     let { players } = this.props;
 
     return (
-      <View>
+      <ScrollView>
         { players.length > 0 ?
           <FlatList data={ players } renderItem={ this.renderItem } keyExtractor={this.keyExtractor}/>
           :
           <Text>Add some players above to start your team creation!</Text>
         }
-        <TouchableHighlight onPress={ this.handleWipe }>
-          <Text>Remove all players</Text>
+        <TouchableHighlight style={ styles.button } onPress={ this.handleWipe }>
+          <Text style={ styles.buttonText }>Remove all players</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={ this.handleAssign }>
-          <Text>Make your teams</Text>
+        <TouchableHighlight style={ styles.button } onPress={ this.handleAssign }>
+          <Text style={ styles.buttonText }>Make your teams</Text>
         </TouchableHighlight>
         {/* onDelete for the swipe needs to be built */}
-      </View>
+      </ScrollView>
     )
   }
 };
 
-Players.navigationOptions = {
-  title: 'Create Your Players',
-  headerBackTitle:'Back to players'
+Players.navigationOptions = ({ navigation }) => {
+  return {
+    title: 'Your Players',
+    headerRight: (
+      <TouchableHighlight
+        onPress={ () => navigation.navigate('Create') }
+        style={{marginRight: 5}}
+      >
+        <Ionicons name="ios-add" size={ 38 } color="white" />
+      </TouchableHighlight>
+    ),
+    headerBackTitle:'Back to Players',
+  }
 };
 
 const styles = StyleSheet.create({
@@ -94,7 +118,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  news: {
+  players: {
     height: 50,
     backgroundColor: '#fff',
     justifyContent: 'center',
@@ -103,12 +127,21 @@ const styles = StyleSheet.create({
     fontSize: 18,
     paddingLeft: 10
   },
-  time: {
+  skill: {
     fontSize: 15,
     color: 'grey',
     paddingLeft: 10,
-    marginBottom: 5
+    marginBottom: 5,
   },
+  button: {
+    backgroundColor: 'pink',
+    borderRadius: 10,
+    width: 50 + '%'
+  },
+  buttonText: {
+    color: 'white',
+    padding: 3
+  }
 });
 
 export default Players;

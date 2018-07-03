@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => {
     onLoad: () => dispatch(getPlayers()),
     onWipe: () => dispatch(deletePlayers()),
     onAssign: () => dispatch(assignTeams()),
-    onDelete: () => dispatch(deletePlayer(player.id)),
+    onDelete: (item) => dispatch(deletePlayer(item.id)),
   };
 };
 

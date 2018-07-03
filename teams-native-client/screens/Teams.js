@@ -62,7 +62,7 @@ Teams.navigationOptions = {
       }
       style={{marginRight: 5}}
     >
-      <Ionicons name="ios-film" size={ 38 } color="white" />
+      <Ionicons name="ios-football" size={ 38 } color="white" />
     </TouchableHighlight>
   ),
 };

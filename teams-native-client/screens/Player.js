@@ -1,78 +1,70 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button } from 'react-native';
+import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
+
 
 class Player extends Component {
   constructor(props) {
     super(props)
-    //
-    // this.state = {
-    // editing: false,
-    // value: this.props.player.player_name,
-    // checked: this.props.player.skill
-    // }
 
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleEdit = this.handleEdit.bind(this);
-    // this.handleRadio = this.handleRadio.bind(this);
-  }
-
-  // handleEdit() {
-  // 
-  //   this.setState({
-  //     editing: true,
-  //   });
-  //
-  // }
-  //
-  // handleRadio(e) {
-  //   let input = +e.target.value;
-  //
-  //   this.setState({
-  //     checked: input,
-  //   });
-  // }
-  //
-  // handleChange(e) {
-  //   let input = e.target.value;
-  //
-  //   this.setState({
-  //     value: input
-  //   });
-  //
-  // }
-  //
-  // handleSubmit(e) {
-  //   e.preventDefault();
-  //
-  //   let player_name = this.state.value;
-  //   let skill = this.state.checked
-  //
-  //   this.setState({
-  //     editing: false
-  //   });
-  //
-  //   this.props.onUpdate(player_name, skill);
-  // }
-
-  render() {
     const player = this.props.navigation.getParam('body');
 
+    this.state = {
+      value: player.player_name,
+      skill: player.skill.toString(),
+    }
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    let player_name = this.state.value;
+    let skill = this.state.checked
+
+    this.props.onUpdate(player_name, skill);
+    this.props.navigation.navigate('Players');
+  }
+
+  render() {
+
+    let { value, skill } = this.state;
+    let valueError = value.length < 1 || value.length > 30 ? true : false;
+    let skillError = skill === "1" || skill === "2" || skill === "3" ? false : true;
+
     return (
-      <View style={ styles.container }>
-        <Text style={ styles.text }>
-          Player Name: { player.player_name }.
-        </Text>
-        <Text style={ styles.text }>
-          Skill Level: { player.skill }.
-        </Text>
+      <View>
+        <FormLabel>Name</FormLabel>
+        <TextInput
+          placeholder='Player Name'
+          autoCapitalize='none'
+          autoCorrect={false}
+          autoFocus={true}
+          keyboardType='default'
+          value={this.state.value}
+          onChangeText={(text) => this.setState({ value: text })} />
+        { valueError ? <FormValidationMessage>{'Name must be between 1 and 30 characters'}</FormValidationMessage> : null }
+        <FormLabel>Skill</FormLabel>
+        <TextInput
+          placeholder='Skill'
+          autoCapitalize='none'
+          keyboardType='number-pad'
+          autoCorrect={false}
+          value={this.state.skill}
+          onChangeText={(num) => this.setState({ skill: num })} />
+        { skillError ? <FormValidationMessage>{'Skill must be between 1 and 3'}</FormValidationMessage> : null }
+        <Button
+          title="Add Player"
+          onPress={this.handleSubmit}
+        />
       </View>
     )
   }
 }
 
 Player.navigationOptions = ({ navigation }) => ({
-  title: navigation.getParam('title')
+  title: navigation.getParam('title'),
 })
 
 const styles = StyleSheet.create({
