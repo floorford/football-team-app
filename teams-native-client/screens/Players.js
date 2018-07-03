@@ -80,19 +80,18 @@ class Players extends Component {
     let { players } = this.props;
 
     return (
-      <ScrollView>
+      <ScrollView contentContainerStyle={ styles.container }>
         { players.length > 0 ?
           <FlatList data={ players } renderItem={ this.renderItem } keyExtractor={this.keyExtractor}/>
           :
           <Text>Add some players above to start your team creation!</Text>
         }
-        <TouchableHighlight style={ styles.button } onPress={ this.handleWipe }>
+        <TouchableHighlight style={ styles.button } onPress={ this.handleWipe } underlayColor="#00cccc">
           <Text style={ styles.buttonText }>Remove all players</Text>
         </TouchableHighlight>
-        <TouchableHighlight style={ styles.button } onPress={ this.handleAssign }>
+        <TouchableHighlight style={ styles.button } onPress={ this.handleAssign } underlayColor="#00cccc">
           <Text style={ styles.buttonText }>Make your teams</Text>
         </TouchableHighlight>
-        {/* onDelete for the swipe needs to be built */}
       </ScrollView>
     )
   }
@@ -104,7 +103,8 @@ Players.navigationOptions = ({ navigation }) => {
     headerRight: (
       <TouchableHighlight
         onPress={ () => navigation.navigate('Create') }
-        style={{marginRight: 5}}
+        style={{marginRight: 10}}
+        underlayColor = "#009999"
       >
         <Ionicons name="ios-add" size={ 38 } color="white" />
       </TouchableHighlight>
@@ -115,13 +115,12 @@ Players.navigationOptions = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
+    flex: 1
   },
   players: {
     height: 50,
     backgroundColor: '#fff',
-    justifyContent: 'center',
   },
   text: {
     fontSize: 18,
@@ -134,13 +133,16 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   button: {
-    backgroundColor: 'pink',
+    backgroundColor: '#009999',
     borderRadius: 10,
-    width: 50 + '%'
+    width: 40 + '%',
+    margin: 2
   },
   buttonText: {
     color: 'white',
-    padding: 3
+    paddingTop: 6,
+    paddingBottom: 6,
+    textAlign: 'center'
   }
 });
 

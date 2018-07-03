@@ -8,7 +8,7 @@ class Teams extends Component {
 
     return (
       <View>
-        <Text>
+        <Text style={ styles.team } >
           { item.player_name }
         </Text>
       </View>
@@ -32,18 +32,18 @@ class Teams extends Component {
     let skill = averageSkill === 1 ? "Poor" : averageSkill === 2 ? "Average" : "Good";
 
     return (
-      <View>
+      <View style={ styles.container }>
         { !players.length ? <Text>You can't have teams without players! Go to the team creator to add some.</Text>
         :
         <View>
           <ScrollView>
-            <Text>Team One</Text>
-            <Text>Team Skill Level: { skill }</Text>
-            <FlatList data={ teamOne } renderItem={ this.renderItem } keyExtractor={this.keyExtractor}/>
+            <Text style={[ styles.title, styles.one ]}>Team One</Text>
+            <Text style={ styles.skill }>Team Skill Level: { skill }</Text>
+            <FlatList data={ teamOne } renderItem={ this.renderItem } style={[ styles.team, styles.one ]} keyExtractor={this.keyExtractor}/>
           </ScrollView>
           <ScrollView>
-            <Text>Team Two</Text>
-            <Text>Team Skill Level: { skill }</Text>
+            <Text style={[ styles.title, styles.two ]}>Team Two</Text>
+            <Text style={ styles.skill }>Team Skill Level: { skill }</Text>
             <FlatList data={ teamTwo } renderItem={ this.renderItem } keyExtractor={this.keyExtractor}/>
           </ScrollView>
         </View>
@@ -66,5 +66,36 @@ Teams.navigationOptions = {
     </TouchableHighlight>
   ),
 };
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignContent: 'center'
+  },
+  title: {
+    fontSize: 20,
+    textAlign: 'center',
+    marginTop: 20
+  },
+  skill: {
+    fontSize: 17,
+    color: 'lightgrey',
+    textAlign: 'center'
+  },
+  team: {
+    fontSize: 15,
+    textAlign: 'center',
+    marginTop: 5
+  },
+  one: {
+    color: 'red'
+  },
+  two: {
+    color: 'blue',
+    marginTop: 50
+  }
+});
 
 export default Teams;

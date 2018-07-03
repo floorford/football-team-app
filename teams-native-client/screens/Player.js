@@ -35,13 +35,14 @@ class Player extends Component {
     let skillError = skill === "1" || skill === "2" || skill === "3" ? false : true;
 
     return (
-      <View>
+      <View style={ styles.container }>
         <FormLabel>Name</FormLabel>
         <TextInput
           placeholder='Player Name'
           autoCapitalize='none'
           autoCorrect={false}
           autoFocus={true}
+          style={ styles.input }
           keyboardType='default'
           value={this.state.value}
           onChangeText={(text) => this.setState({ value: text })} />
@@ -52,11 +53,12 @@ class Player extends Component {
           autoCapitalize='none'
           keyboardType='number-pad'
           autoCorrect={false}
+          style={ styles.input }
           value={this.state.skill}
           onChangeText={(num) => this.setState({ skill: num })} />
         { skillError ? <FormValidationMessage>{'Skill must be between 1 and 3'}</FormValidationMessage> : null }
         <Button
-          title="Add Player"
+          title="Update Player"
           onPress={this.handleSubmit}
         />
       </View>
@@ -75,10 +77,11 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
   },
-  text: {
+  input: {
+    marginLeft: 20,
     fontSize: 18,
-    marginTop: 5,
-  },
+    marginTop: 10
+  }
 });
 
 export default Player
