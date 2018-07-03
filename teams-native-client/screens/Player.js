@@ -12,6 +12,7 @@ class Player extends Component {
     this.state = {
       value: player.player_name,
       skill: player.skill.toString(),
+      id: player.id,
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,10 +21,10 @@ class Player extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    let player_name = this.state.value;
-    let skill = this.state.checked
+    let { id, value, skill } = this.state;
+    let skillNum = +skill
 
-    this.props.onUpdate(player_name, skill);
+    this.props.onUpdate(id, value, skillNum);
     this.props.navigation.navigate('Players');
   }
 

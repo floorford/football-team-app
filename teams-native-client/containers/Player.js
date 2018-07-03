@@ -4,11 +4,11 @@ import { connect } from "react-redux";
 // import in the Player component
 import Player from "../screens/Player";
 
-import { patchPlayer, deletePlayer } from "../data/actions/api";
+import { patchPlayer } from "../data/actions/api";
 
-const mapDispatchToProps = (dispatch, { player }) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdate: (player_name, skill) => dispatch(patchPlayer(player.id, player_name, skill)),
+    onUpdate: (id, player_name, skill) => (dispatch(patchPlayer(id, player_name, skill))),
   };
 };
 
