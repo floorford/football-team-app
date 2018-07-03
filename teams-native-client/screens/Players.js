@@ -86,12 +86,14 @@ class Players extends Component {
           :
           <Text>Add some players above to start your team creation!</Text>
         }
-        <TouchableHighlight style={ styles.button } onPress={ this.handleWipe } underlayColor="#00cccc">
-          <Text style={ styles.buttonText }>Remove all players</Text>
-        </TouchableHighlight>
-        <TouchableHighlight style={ styles.button } onPress={ this.handleAssign } underlayColor="#00cccc">
-          <Text style={ styles.buttonText }>Make your teams</Text>
-        </TouchableHighlight>
+        <View>
+          <TouchableHighlight style={ styles.button } onPress={ this.handleWipe } underlayColor="#00cccc">
+            <Text style={ styles.buttonText }>Remove all players</Text>
+          </TouchableHighlight>
+          <TouchableHighlight style={ styles.button } onPress={ this.handleAssign } underlayColor="#00cccc">
+            <Text style={ styles.buttonText }>Make your teams</Text>
+          </TouchableHighlight>
+        </View>
       </ScrollView>
     )
   }
