@@ -21,7 +21,7 @@ body {
   color: white;
   cursor: pointer;
   display: inline-block;
-  margin-left: -14px;
+  margin-left: -15px;
 }
 
 .input {
@@ -48,7 +48,7 @@ body {
 .header {
   text-align: center;
   text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
-  margin: 30px 0px 40px 0px;
+  margin: 30px 0px 6% 0px;
   font-family: 'Alfa Slab One', cursive;
 }
 
@@ -58,7 +58,7 @@ body {
   display: block;
   text-align: center;
   font-size: 0.75rem;
-  margin: 0px 21% 0px 21%;
+  margin: 0px 30% 0px 30%;
 }
 
 .player-grid {
@@ -86,6 +86,10 @@ body {
   }
 }
 
+.skill-label {
+  margin: 0px 5px 6px 4px;
+}
+
 .players {
   width: 20rem;
   text-align: center;
@@ -102,7 +106,7 @@ body {
 .btn-group {
   display: flex;
   justify-content: center;
-  margin: 10px 0px 50px 0px;
+  margin: 10px 0px 6% 0px;
 }
 
 .group {
@@ -112,6 +116,8 @@ body {
 .main {
   margin: 3px;
   font-size: 1em;
+  margin-top: -6px;
+  padding: 8px 0px 8px 0px;
 }
 
 .error {
@@ -147,7 +153,7 @@ body {
   font-size: 01em;
   display: inline;
   padding: 9px;
-  margin: -1px 0px 5px 12px;
+  margin: -3px 0px 5px 12px;
 }
 
 /* Teams Component */

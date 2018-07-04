@@ -75,9 +75,10 @@ class Players extends Component {
 
     return(
       <React.Fragment>
-        <form className="form" onSubmit={ this.handleSubmit } autofocus>
+        <form className="form" onSubmit={ this.handleSubmit }>
           <label className="label" htmlFor="player_name">Add a player: </label>
-          <input className="main input" id="player_name" onChange={ this.handleChange } value={ value } autofocus></input>
+          <input className="main input" id="player_name" onChange={ this.handleChange } value={ value } autoFocus></input>
+          <p className="skill-label">Skill Level: </p>
           <div className="radio-pad" onClick={ (e) => this.handleRadio2(e, 1) }>
             <input className="radio"  name="skill" type="radio" value="1" id="poor"/>
             <label className="radio-label" htmlFor="poor">
