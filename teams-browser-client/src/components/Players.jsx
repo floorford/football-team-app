@@ -99,47 +99,29 @@ class Players extends Component {
           </div>
           <button className="solo-buttons btn btn-info" disabled={ disabled }>Add</button>
         </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         { disabled ? <p className="validation alert alert-secondary">Please enter a player name and select and skill level. Max 30 characters</p> : null }
+
         { /* check there are players to show */ }
         { players.length ?
-          <div>
-            <div className="btn-group">
-              <button onClick={ this.handleWipe } className="btn btn-danger group">Remove all players</button>
-              <Link to="/my-teams">
-                <button className="btn btn-success group" onClick={ this.handleAssign } type="button">Make your teams</button>
-              </Link>
-            </div>
-            <div className="player-grid">
-              { /* map over each player and display a section for each one */ }
-              { players.map(player => (
-                <div className="players" key={ player.id }>
-                { /* link to the player using its id */ }
-                  <Player player={ player }/>
-                </div>
-              ))}
-            </div>
+        <div>
+          <div className="btn-group">
+            <button onClick={ this.handleWipe } className="btn btn-danger group">Remove all players</button>
+            <Link to="/my-teams">
+              <button className="btn btn-success group" onClick={ this.handleAssign } type="button">Make your teams</button>
+            </Link>
           </div>
-          :
-          <p className="error">There are no players, add some above to get creating your teams!</p>
+          <div className="player-grid">
+            { /* map over each player and display a section for each one */ }
+            { players.map(player => (
+              <div className="players" key={ player.id }>
+              { /* link to the player using its id */ }
+                <Player player={ player }/>
+              </div>
+            ))}
+          </div>
+        </div>
+        :
+        <p className="error">There are no players, add some above to get creating your teams!</p>
         }
       </React.Fragment>
     )
