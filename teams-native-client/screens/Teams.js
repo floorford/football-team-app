@@ -8,7 +8,7 @@ class Teams extends Component {
 
     return (
       <View>
-        <Text style={ styles.team } >
+        <Text style={[ styles.team, {fontSize:16} ]}  >
           { item.player_name }
         </Text>
       </View>
@@ -33,17 +33,19 @@ class Teams extends Component {
 
     return (
       <View style={ styles.container }>
-        { !players.length ? <Text>You can't have teams without players! Go to the team creator to add some.</Text>
+        { !players.length ? <Text style={ styles.title }>You can't have teams without players! Go to the team creator to add some.</Text>
         :
         <View>
           <ScrollView>
-            <Text style={[ styles.title, styles.one ]}>Team One</Text>
-            <Text style={ styles.skill }>Team Skill Level: { skill }</Text>
-            <FlatList data={ teamOne } renderItem={ this.renderItem } style={[ styles.team, styles.one ]} keyExtractor={this.keyExtractor}/>
+            <Text style={[styles.title, {fontSize: 20, color: 'red'}]}>Team One</Text>
+            <Text style={[styles.skill, {fontSize: 17}]}>Team Skill Level: { skill }</Text>
+            <FlatList data={ teamOne } renderItem={ this.renderItem } keyExtractor={this.keyExtractor}/>
           </ScrollView>
+          <View style={ styles.separator }/>
+          <View style={ styles.separator }/>
           <ScrollView>
-            <Text style={[ styles.title, styles.two ]}>Team Two</Text>
-            <Text style={ styles.skill }>Team Skill Level: { skill }</Text>
+            <Text style={[ styles.title, {fontSize: 20, color: 'blue'} ]}>Team Two</Text>
+            <Text style={[ styles.skill, {fontSize: 17} ]}>Team Skill Level: { skill }</Text>
             <FlatList data={ teamTwo } renderItem={ this.renderItem } keyExtractor={this.keyExtractor}/>
           </ScrollView>
         </View>
@@ -58,11 +60,11 @@ Teams.navigationOptions = {
   headerRight: (
     <TouchableHighlight
       onPress={
-        async (url) => WebBrowser.openBrowserAsync('https://img.fifa.com/image/upload/datdz0pms85gbnqy4j3k.pdf')
+        async (url) => WebBrowser.openBrowserAsync('http://www.5-a-side.com/summary-of-5-a-side-rules/')
       }
-      style={{marginRight: 5}}
+      style={{marginRight: 7}}
     >
-      <Ionicons name="ios-football" size={ 38 } color="white" />
+      <Ionicons name="ios-football" size={ 36 } color="white" />
     </TouchableHighlight>
   ),
 };
@@ -75,26 +77,25 @@ const styles = StyleSheet.create({
     alignContent: 'center'
   },
   title: {
-    fontSize: 20,
     textAlign: 'center',
-    marginTop: 20
+    marginTop: 30
   },
   skill: {
-    fontSize: 17,
     color: 'lightgrey',
-    textAlign: 'center'
+    textAlign: 'center',
+    marginTop: 10
   },
   team: {
-    fontSize: 15,
     textAlign: 'center',
-    marginTop: 5
-  },
-  one: {
-    color: 'red'
+    marginTop: 10
   },
   two: {
-    color: 'blue',
-    marginTop: 50
+    marginTop: 70
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#009999',
+    marginTop: 30,
   }
 });
 

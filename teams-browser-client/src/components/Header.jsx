@@ -6,6 +6,7 @@ const Header = ({ children }) => (
     <h1>
       { children }
     </h1>
+    <h6>Add as many players as you like and create your dream team</h6>
   </header>
 );
 

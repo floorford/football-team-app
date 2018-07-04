@@ -76,25 +76,40 @@ class Players extends Component {
     return `${index}`;
   }
 
+  renderSeparator() {
+    const style = { height: 1, backgroundColor: '#777', marginLeft: 4, marginRight: 4 };
+    return <View style={style} />;
+  }
+
   render() {
     let { players } = this.props;
+    let disabled = players.length < 2 ? true : false;
+
+    let color = disabled ? 'lightgrey' : '#009999';
+
+    const disableColor = {
+      backgroundColor: color,
+    }
 
     return (
-      <ScrollView contentContainerStyle={ styles.container }>
+      <View style={ styles.container }>
+        <ScrollView>
         { players.length > 0 ?
-          <FlatList data={ players } renderItem={ this.renderItem } keyExtractor={this.keyExtractor}/>
+          <FlatList data={ players } renderItem={ this.renderItem } keyExtractor={this.keyExtractor} ItemSeparatorComponent={ this.renderSeparator }/>
           :
-          <Text>Add some players above to start your team creation!</Text>
+          <Text style={ styles.text }>Add some players above to start your team creation!</Text>
         }
-        <View>
-          <TouchableHighlight style={ styles.button } onPress={ this.handleWipe } underlayColor="#00cccc">
+        </ScrollView>
+        <View style={ styles.buttonContainer }>
+          { disabled ? <Text style={ styles.text }>Add another player to create two teams</Text> : null }
+          <TouchableHighlight style={[ styles.button, styles.button1 ]} onPress={ this.handleWipe } underlayColor="#00cccc">
             <Text style={ styles.buttonText }>Remove all players</Text>
           </TouchableHighlight>
-          <TouchableHighlight style={ styles.button } onPress={ this.handleAssign } underlayColor="#00cccc">
+          <TouchableHighlight style={[ styles.button, styles.button2, disableColor ]} onPress={ this.handleAssign } underlayColor="#00cccc" disabled={ disabled }>
             <Text style={ styles.buttonText }>Make your teams</Text>
           </TouchableHighlight>
         </View>
-      </ScrollView>
+      </View>
     )
   }
 };
@@ -134,11 +149,21 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     marginBottom: 5,
   },
+  buttonContainer: {
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
   button: {
-    backgroundColor: '#009999',
     borderRadius: 10,
     width: 40 + '%',
-    margin: 2
+    margin: 2,
+    backgroundColor: '#009999'
+  },
+  button1: {
+    marginTop: 5
+  },
+  button2: {
+    marginBottom: 30
   },
   buttonText: {
     color: 'white',

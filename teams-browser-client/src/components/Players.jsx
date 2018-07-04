@@ -42,17 +42,19 @@ class Players extends Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    if(e && e.keyCode == 13) {
+      e.preventDefault();
 
-    let player_name = this.state.value;
-    let skill = this.state.check
+      let player_name = this.state.value;
+      let skill = this.state.check
 
-    this.props.onSubmit(player_name, skill);
+      this.props.onSubmit(player_name, skill);
 
-    this.setState({
-      value: "",
-      check: null
-    });
+      this.setState({
+        value: "",
+        check: null
+      });
+    }
   }
 
   handleWipe(e) {
@@ -73,9 +75,9 @@ class Players extends Component {
 
     return(
       <React.Fragment>
-        <form className="form" onSubmit={ this.handleSubmit }>
+        <form className="form" onSubmit={ this.handleSubmit } autofocus>
           <label className="label" htmlFor="player_name">Add a player: </label>
-          <input className="main input" id="player_name" onChange={ this.handleChange } value={ value }></input>
+          <input className="main input" id="player_name" onChange={ this.handleChange } value={ value } autofocus></input>
           <div className="radio-pad" onClick={ (e) => this.handleRadio2(e, 1) }>
             <input className="radio"  name="skill" type="radio" value="1" id="poor"/>
             <label className="radio-label" htmlFor="poor">

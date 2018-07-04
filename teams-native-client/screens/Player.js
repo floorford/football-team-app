@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
 
 
@@ -19,9 +19,10 @@ class Player extends Component {
   }
 
   handleSubmit(e) {
+    let { id, value, skill } = this.state;
+
     e.preventDefault();
 
-    let { id, value, skill } = this.state;
     let skillNum = +skill
 
     this.props.onUpdate(id, value, skillNum);
@@ -33,6 +34,7 @@ class Player extends Component {
     let { value, skill } = this.state;
     let valueError = value.length < 1 || value.length > 30 ? true : false;
     let skillError = skill === "1" || skill === "2" || skill === "3" ? false : true;
+    let disabled = (valueError || skillError) ? true : false;
 
     return (
       <View style={ styles.container }>
@@ -44,7 +46,7 @@ class Player extends Component {
           autoFocus={true}
           style={ styles.input }
           keyboardType='default'
-          value={this.state.value}
+          value={ this.state.value }
           onChangeText={(text) => this.setState({ value: text })} />
         { valueError ? <FormValidationMessage>{'Name must be between 1 and 30 characters'}</FormValidationMessage> : null }
         <FormLabel>Skill</FormLabel>
@@ -54,12 +56,13 @@ class Player extends Component {
           keyboardType='number-pad'
           autoCorrect={false}
           style={ styles.input }
-          value={this.state.skill}
+          value={ this.state.skill }
           onChangeText={(num) => this.setState({ skill: num })} />
         { skillError ? <FormValidationMessage>{'Skill must be between 1 and 3'}</FormValidationMessage> : null }
         <Button
           title="Update Player"
-          onPress={this.handleSubmit}
+          onPress={ this.handleSubmit }
+          disabled={ disabled }
         />
       </View>
     )

@@ -8,7 +8,7 @@ class Create extends Component {
 
     this.state = {
       value: "",
-      skill: "0"
+      skillSet: ""
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,16 +16,18 @@ class Create extends Component {
   }
 
   handleSubmit(e) {
+    const { value, skillSet } = this.state;
+
     e.preventDefault();
 
-    let player_name = this.state.value;
-    let skill = +this.state.skill
+    let player_name = value;
+    let skill = +skillSet
 
     this.props.onSubmit(player_name, skill);
 
     this.setState({
       value: "",
-      skill: "0"
+      skillSet: "0"
     });
 
     this.props.navigation.navigate('Players');
@@ -33,9 +35,10 @@ class Create extends Component {
 
   render() {
 
-    let { value, skill } = this.state;
+    let { value, skillSet } = this.state;
     let valueError = value.length < 1 || value.length > 30 ? true : false;
-    let skillError = skill === "1" || skill === "2" || skill === "3" ? false : true;
+    let skillError = skillSet === "1" || skillSet === "2" || skillSet === "3" ? false : true;
+    let disabled = (valueError || skillError) ? true : false;
 
     return(
       <View style={ styles.container }>
@@ -55,15 +58,16 @@ class Create extends Component {
           placeholder='Skill'
           autoCapitalize='none'
           keyboardType='number-pad'
-          autoCorrect={false}
-          value={this.state.skill}
+          autoCorrect={ false }
+          value={ this.state.skill }
           style={ styles.input }
-          onChangeText={(num) => this.setState({ skill: num })} />
+          onChangeText={(num) => this.setState({ skillSet: num })} />
         { skillError ? <FormValidationMessage>{'Skill must be between 1 and 3'}</FormValidationMessage> : null }
         <Button
           title="Add Player"
-          onPress={this.handleSubmit}
+          onPress={ this.handleSubmit }
           style={ styles.button }
+          disabled={ disabled }
         />
       </View>
     )
