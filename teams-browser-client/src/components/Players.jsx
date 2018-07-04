@@ -42,7 +42,7 @@ class Players extends Component {
   }
 
   handleSubmit(e) {
-    if(e && e.keyCode == 13) {
+    if(e && e.keyCode === 13) {
       e.preventDefault();
 
       let player_name = this.state.value;
