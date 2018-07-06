@@ -18,7 +18,6 @@ class Players extends Component {
     this.handleRadio2 = this.handleRadio2.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleWipe = this.handleWipe.bind(this);
-    this.handleAssign = this.handleAssign.bind(this);
   }
 
   // using the lifecycle method that occurs when the page loads to call the onLoad property, which gets the players from the database
@@ -69,11 +68,6 @@ class Players extends Component {
     this.props.onWipe();
   }
 
-  // takes the user to teams page to see their assigned teams
-  handleAssign() {
-    this.props.onAssign();
-  }
-
   render() {
 
     // destructuring the state and props objects
@@ -119,7 +113,7 @@ class Players extends Component {
           <div className="btn-group">
             <button onClick={ this.handleWipe } className="btn btn-danger group">Remove all players</button>
             <Link to="/my-teams">
-              <button className="btn btn-success group" onClick={ this.handleAssign } type="button">Make your teams</button>
+              <button className="btn btn-success group" type="button">Make your teams</button>
             </Link>
           </div>
           <div className="player-grid">

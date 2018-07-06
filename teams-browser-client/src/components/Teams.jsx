@@ -3,6 +3,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 class Teams extends Component {
+  // using the lifecycle method that occurs when the page loads to call the onLoad property, which calls the assignTeams api action
+  componentDidMount() {
+    this.props.onLoad();
+  }
+
   render() {
 
     // destructuring the props object

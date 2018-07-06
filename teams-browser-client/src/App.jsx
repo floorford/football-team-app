@@ -5,12 +5,12 @@ import Header from "./components/Header";
 import Teams from "./containers/Teams";
 
 import {
-  BrowserRouter as Router,
+  HashRouter as Router, // was BrowserRouter
   Route,
 } from "react-router-dom";
 
 const App = () => (
-  <Router>
+  <Router basename="/">
     <React.Fragment>
       { /* header should show on all pages */ }
       <Header>5 Aside</Header>
