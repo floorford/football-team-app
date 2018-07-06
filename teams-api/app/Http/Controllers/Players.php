@@ -73,7 +73,6 @@ class Players extends Controller
       Player::truncate();
 
       // use a 204 code as there is no content in the response
-      // @TODO Test this out, make it one command?
       return response(null, 204);
     }
 

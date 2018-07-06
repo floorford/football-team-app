@@ -13,7 +13,7 @@ class PlayerRequest extends FormRequest
    */
   public function authorize()
   {
-    return true; //@TODO explain me
+    return true; // I do not know how to create authorisation for the back-end and the time constraints of the project did not allow me to get to this stage either. It is something I would like to learn to do in the future however.
   }
 
   /**

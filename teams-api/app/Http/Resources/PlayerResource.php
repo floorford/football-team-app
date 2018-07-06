@@ -14,7 +14,7 @@ class PlayerResource extends JsonResource
    */
   public function toArray($request)
   {
-    // just show the id, player_name, and skill properties
+    // just return the id, player_name, skill and team properties
     // $this represents the current player
     return [
       "id" => $this->id,
