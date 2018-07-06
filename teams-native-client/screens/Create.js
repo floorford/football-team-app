@@ -6,6 +6,7 @@ class Create extends Component {
   constructor(props) {
     super(props)
 
+    // sets the initial state to empty strings to allow for easy input by the user
     this.state = {
       value: "",
       skillSet: ""
@@ -15,6 +16,7 @@ class Create extends Component {
 
   }
 
+  // submits the form with the data filled in by the user
   handleSubmit(e) {
     const { value, skillSet } = this.state;
 
@@ -25,23 +27,29 @@ class Create extends Component {
 
     this.props.onSubmit(player_name, skill);
 
+    // resets the state to it's initial values so the user can add more players easily
     this.setState({
       value: "",
       skillSet: "0"
     });
 
+    // takes the user back to the players screen to show the updated player list
     this.props.navigation.navigate('Players');
   }
 
   render() {
 
+    // destructuring the state object
     let { value, skillSet } = this.state;
+
+    // render logic for form validation
     let valueError = value.length < 1 || value.length > 30 ? true : false;
     let skillError = skillSet === "1" || skillSet === "2" || skillSet === "3" ? false : true;
     let disabled = (valueError || skillError) ? true : false;
 
     return(
       <View style={ styles.container }>
+        {/* A form is rendered */}
         <FormLabel>Name</FormLabel>
         <TextInput
           placeholder='Player Name'

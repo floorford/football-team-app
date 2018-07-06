@@ -13,16 +13,19 @@ class Players extends Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
 
+  // using the lifecycle method that occurs when the screen loads to call the onLoad property, which gets the players from the database
   componentDidMount() {
     this.props.onLoad();
   }
 
+  // allows the player to delete the database to start fresh
   handleWipe(e) {
     e.preventDefault();
 
     this.props.onWipe();
   }
 
+  // takes the user to teams screen to see their assigned teams
   handleAssign() {
     this.props.onAssign();
 
@@ -31,12 +34,15 @@ class Players extends Component {
     })
   }
 
+  // allows the player to be deleted from the database
   handleDelete(e, item) {
     this.props.onDelete(item);
   }
 
+  // setting the what will be rendered by the FlatList component
   renderItem({ item }) {
 
+    // settin the swipe to delete button
     let swipeBtns = [{
       text: 'Delete',
       backgroundColor: 'red',
@@ -44,6 +50,7 @@ class Players extends Component {
       onPress: (e) => { this.handleDelete(e, item) }
     }];
 
+    // clicking on the player will take the user to an editing screen containing the player information
     onPress = (item) => {
       this.props.navigation.navigate('Player', {
         title: `Player: ${item.player_name}`,
@@ -51,6 +58,7 @@ class Players extends Component {
       })
     }
 
+    // this is what the FlatList is rendering for each player
     return (
       <View>
         <Swipeout right={swipeBtns}
@@ -72,19 +80,23 @@ class Players extends Component {
     );
   }
 
+  // binding a key to each FlatList component for efficient rendering purposes
   keyExtractor(item, index) {
     return `${index}`;
   }
 
+  // setting the styling for the dividing line between each player
   renderSeparator() {
     const style = { height: 1, backgroundColor: '#777', marginLeft: 4, marginRight: 4 };
     return <View style={style} />;
   }
 
   render() {
+    // destructuring the props object
     let { players } = this.props;
-    let disabled = players.length < 2 ? true : false;
 
+    // setting some rendering logic for the TouchableHighlight buttons below so they are only clickable when they're applicable
+    let disabled = players.length < 2 ? true : false;
     let color = disabled ? 'lightgrey' : '#009999';
 
     const disableColor = {
@@ -94,12 +106,14 @@ class Players extends Component {
     return (
       <View style={ styles.container }>
         <ScrollView>
+        {/* this checks there are players to render within the ScrollView, if not the ScrollView isn't rendered at all and text prompting the user is shown in a View instead */}
         { players.length > 0 ?
           <FlatList data={ players } renderItem={ this.renderItem } keyExtractor={this.keyExtractor} ItemSeparatorComponent={ this.renderSeparator }/>
           :
           <Text style={ styles.text }>Add some players above to start your team creation!</Text>
         }
         </ScrollView>
+        {/* This View contains the buttons and the prompt text */}
         <View style={ styles.buttonContainer }>
           { disabled ? <Text style={ styles.text }>Add another player to create two teams</Text> : null }
           <TouchableHighlight style={[ styles.button, styles.button1 ]} onPress={ this.handleWipe } underlayColor="#00cccc">
@@ -114,6 +128,7 @@ class Players extends Component {
   }
 };
 
+// These navigation options contain the screen header title but also the + icon which takes players to the create a player screen
 Players.navigationOptions = ({ navigation }) => {
   return {
     title: 'Your Players',
@@ -126,7 +141,6 @@ Players.navigationOptions = ({ navigation }) => {
         <Ionicons name="ios-add" size={ 38 } color="white" />
       </TouchableHighlight>
     ),
-    headerBackTitle:'Back to Players',
   }
 };
 

@@ -7,8 +7,10 @@ class Player extends Component {
   constructor(props) {
     super(props)
 
+    // assigning the player object passed to this screen through the navigation prop to a variable
     const player = this.props.navigation.getParam('body');
 
+    // setting the state to include the data from the variable above
     this.state = {
       value: player.player_name,
       skill: player.skill.toString(),
@@ -18,6 +20,7 @@ class Player extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // submits the form with the data filled in by the user
   handleSubmit(e) {
     let { id, value, skill } = this.state;
 
@@ -31,13 +34,17 @@ class Player extends Component {
 
   render() {
 
+    // destructuring the state object
     let { value, skill } = this.state;
+
+    // setting render logic for the error messages and the submit button as a way to validate the form
     let valueError = value.length < 1 || value.length > 30 ? true : false;
     let skillError = skill === "1" || skill === "2" || skill === "3" ? false : true;
     let disabled = (valueError || skillError) ? true : false;
 
     return (
       <View style={ styles.container }>
+        {/* A form is rendered */}
         <FormLabel>Name</FormLabel>
         <TextInput
           placeholder='Player Name'
@@ -87,4 +94,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Player
+export default Player;
