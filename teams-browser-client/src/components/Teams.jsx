@@ -25,7 +25,7 @@ class Teams extends Component {
         {/* Checks there are players to show, if there are renders the two teams with the players in, if there are no players renders text and a link which takes the user back to the create players screen */}
         { players.length ?
           <div>
-            <div class="wrapper">
+            <div className="wrapper">
               <Link to="/">
                 <button className="btn btn-info" type="button">Change your players</button>
               </Link>

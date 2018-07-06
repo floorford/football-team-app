@@ -1,3 +1,5 @@
+import initial from "./initial";
+
 // sets the empty players array defined in initial.js to the players object from the database
 const setPlayers = (state, { players }) => {
   return {
@@ -46,16 +48,6 @@ const removePlayer = (state, { id }) => {
   };
 };
 
-// takes the players array and resets it with a blank array, like the initial state
-const resetPlayers = (state, action) => {
-  let reset = []
-
-  return {
-    ...state,
-    players: reset
-  };
-};
-
 // takes the players array which has now been assigned team numbers for each player and overwrites the previous array with unassigned teams
 const makeTeams = (state, { players }) => {
   return {
@@ -70,7 +62,7 @@ const reducer = (state, action) => {
     case "addPlayer": return addPlayer(state, action);
     case "editPlayer": return editPlayer(state, action);
     case "removePlayer": return removePlayer(state, action);
-    case "resetPlayers": return resetPlayers(state, action);
+    case "resetPlayers": return initial;
     case "makeTeams": return makeTeams(state, action);
     default: return state;
   }
