@@ -1,5 +1,9 @@
 # football-team-app
-This is an app built with react-redux and laravel which allows people to generate a two balanced football teams
+This is an app with two clients, one built with react, the other built with react-native which both talk to a backend using a laravel API. This app allows people to create players and generate two balanced football teams according to their skill levels.
+
+To see the hosted version of the react app please visit here: http://18.130.166.177/
+
+If you want to install the app, see the mobile version or host the entire thing locally, follow the instructions below.
 
 Installation Guide
 
