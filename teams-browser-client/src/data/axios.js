@@ -7,3 +7,7 @@ export default axios.create({
     Accept: "application/json",
   },
 });
+
+// if the app is being connected to the hosted backend, please use the 1st baseURL
+
+// the 2nd baseURL will be where you put in the url for your locally hosted vagrant server if you want to run the app locally

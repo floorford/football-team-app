@@ -8,6 +8,7 @@ class Players extends Component {
   constructor (props) {
     super(props);
 
+    // the initial state is an empty string for the input field, and no assignment to the checkboxes
     this.state = {
       value: "",
       check: null,
@@ -20,11 +21,12 @@ class Players extends Component {
     this.handleAssign = this.handleAssign.bind(this);
   }
 
+  // using the lifecycle method that occurs when the page loads to call the onLoad property, which gets the players from the database
   componentDidMount() {
     this.props.onLoad();
   }
 
-
+// sets the value in state to the value of the name input field
   handleChange(e) {
     let input = e.target.value;
 
@@ -33,6 +35,7 @@ class Players extends Component {
     });
   }
 
+// sets the check in state to the value of the radio button clicked for player skill
   handleRadio2(e, i) {
     let input = +i;
 
@@ -41,8 +44,9 @@ class Players extends Component {
     });
   }
 
+// submits the form with the data filled in by the user
   handleSubmit(e) {
-    if(e && e.keyCode === 13) {
+    if(e || e.keyCode === 13) {
       e.preventDefault();
 
       let player_name = this.state.value;
@@ -50,6 +54,7 @@ class Players extends Component {
 
       this.props.onSubmit(player_name, skill);
 
+      // resets the state to it's initial values so the user can add more players easily
       this.setState({
         value: "",
         check: null
@@ -57,24 +62,30 @@ class Players extends Component {
     }
   }
 
+  // allows the player to delete the database to start fresh
   handleWipe(e) {
     e.preventDefault();
 
     this.props.onWipe();
   }
 
+  // takes the user to teams page to see their assigned teams
   handleAssign() {
     this.props.onAssign();
   }
 
   render() {
+
+    // destructuring the state and props objects
     let { players } = this.props;
     const { value } = this.state;
 
+    // render logic effected by the state which is used on the form submission
     let disabled = true ? (value.length < 1 || this.state.check === null) : false;
 
     return(
       <React.Fragment>
+        {/* the form which allows users to submit new players, this is always rendered */}
         <form className="form" onSubmit={ this.handleSubmit }>
           <label className="label" htmlFor="player_name">Add a player: </label>
           <input className="main input" id="player_name" onChange={ this.handleChange } value={ value } autoFocus></input>
@@ -99,9 +110,10 @@ class Players extends Component {
           </div>
           <button className="solo-buttons btn btn-info" disabled={ disabled }>Add</button>
         </form>
+        {/* This error message appears when the form data is invalid */}
         { disabled ? <p className="validation alert alert-secondary">Please enter a player name and select and skill level. Max 30 characters</p> : null }
 
-        { /* check there are players to show */ }
+        { /* This checks there are players to show and renders either the players, or text which prompts the user to add players */ }
         { players.length ?
         <div>
           <div className="btn-group">
@@ -111,10 +123,9 @@ class Players extends Component {
             </Link>
           </div>
           <div className="player-grid">
-            { /* map over each player and display a section for each one */ }
+            { /* This map iterates over each player and display a div with a player component for each one */ }
             { players.map(player => (
               <div className="players" key={ player.id }>
-              { /* link to the player using its id */ }
                 <Player player={ player }/>
               </div>
             ))}
