@@ -82,7 +82,7 @@ class Players extends Component {
         {/* the form which allows users to submit new players, this is always rendered */}
         <form className="form" onSubmit={ this.handleSubmit }>
           <label className="label" htmlFor="player_name">Add a player: </label>
-          <input className="main input" id="player_name" onChange={ this.handleChange } value={ value } autoFocus></input>
+          <input className="main input form-control" id="player_name" onChange={ this.handleChange } value={ value } autoFocus placeholder="Enter player's name"></input>
           <p className="skill-label">Skill Level: </p>
           <div className="radio-pad" onClick={ (e) => this.handleRadio2(e, 1) }>
             <input className="radio"  name="skill" type="radio" value="1" id="poor"/>

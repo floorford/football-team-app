@@ -80,7 +80,7 @@ constructor(props) {
       {/* the form which appears if 'editing' in state is true: an input field, 3 radio buttons & a submit button */}
         { editing ?
           <form className="player-form" onSubmit={ this.handleSubmit }>
-            <input className="input edit" id="player" onChange={ this.handleChange } value={ value }></input>
+            <input className="input edit form-control" id="player" onChange={ this.handleChange } value={ value }></input>
             <label className="label" htmlFor="poor">
               <input className="radio radio-edit" name="skill" onClick={ this.handleRadio } type="radio" value="1" id="poor" />
               Poor

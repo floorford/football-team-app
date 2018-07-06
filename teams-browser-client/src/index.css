@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Scope One', serif;
+  font-family: 'Questrial', sans-serif;
   background-image: url("./assets/stadium-918830_1920.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -18,7 +18,7 @@ body {
 
 .radio-label {
   background-color: hsla(188, 78.4%, 40%, 1);
-  padding: 10px;
+  padding: 10px 11px 10px 11px;
   color: white;
   cursor: pointer;
   display: inline-block;
@@ -27,7 +27,7 @@ body {
 
 .input {
   font-size: 2rem;
-  max-width: 158px;
+  max-width: 167px;
   margin-left: 81px;
   margin-bottom: 5px;
   display: block;
@@ -48,7 +48,7 @@ body {
 
 .header {
   text-align: center;
-  text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+  text-shadow: 4px 4px 2px whitesmoke;
   margin: 30px 0px 6% 0px;
   font-family: 'Alfa Slab One', cursive;
 }
@@ -58,7 +58,7 @@ body {
 .validation {
   display: block;
   text-align: center;
-  font-size: 0.75rem;
+  font-size: 0.79rem;
   margin: 0px 30% 0px 30%;
 }
 
@@ -94,7 +94,8 @@ body {
 .players {
   width: 20rem;
   text-align: center;
-  background: hsla(124, 43%, 55%, 0.4);
+  background: hsla(124, 66%, 72%, 0.4);
+  box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75);
 }
 
 .form {
@@ -135,7 +136,7 @@ body {
 }
 
 .player-skill {
-  color: white;
+  color: black;
 }
 
 .skill-change {
@@ -176,10 +177,11 @@ body {
   margin-bottom: 50px;
   padding-bottom: 20px;
   padding-top: 20px;
+  box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75);
 }
 
 .one {
-  background: hsla(349, 100%, 69%, 0.38);
+  background: hsla(349, 100%, 53%, 0.38);
 }
 
 .two {
@@ -188,6 +190,7 @@ body {
 
 .team1 {
   grid-area: 1 / 1 / 1 / 5;
+  color: brown;
 }
 
 .team-skill1 {
@@ -196,10 +199,15 @@ body {
 
 .team2 {
   grid-area: 1 / 1 / 1 / 5;
+  color: navy;
 }
 
 .team-skill2 {
   grid-area: 2 / 1 / 2 / 5;
+}
+
+span {
+  color: white;
 }
 
 .team-group {
