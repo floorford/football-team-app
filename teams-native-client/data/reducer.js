@@ -62,8 +62,8 @@ const reducer = (state, action) => {
     case "addPlayer": return addPlayer(state, action);
     case "editPlayer": return editPlayer(state, action);
     case "removePlayer": return removePlayer(state, action);
-    case "resetPlayers": return initial;
     case "makeTeams": return makeTeams(state, action);
+    case "resetPlayers": return initial;
     default: return state;
   }
 };
