@@ -3,7 +3,12 @@ body {
   padding: 0;
   font-family: 'Scope One', serif;
   background-image: url("./assets/stadium-918830_1920.jpg");
-  /* background-image: url("./assets/soccer-1859046_1920.jpg"); */
+}
+
+@media only screen and (max-width: 1280px) {
+  body {
+    background-image: url("./assets/stadium-918830_1280.jpg");
+  }
 }
 
 /* MultiPage Styling */
