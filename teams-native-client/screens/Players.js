@@ -97,7 +97,7 @@ class Players extends Component {
 
     // setting some rendering logic for the TouchableHighlight buttons below so they are only clickable when they're applicable
     let disabled = players.length < 2 ? true : false;
-    let color = disabled ? 'lightgrey' : '#009999';
+    let color = disabled ? 'lightgrey' : 'rgb(21, 160, 180)';
 
     const disableColor = {
       backgroundColor: color,
@@ -136,7 +136,7 @@ Players.navigationOptions = ({ navigation }) => {
       <TouchableHighlight
         onPress={ () => navigation.navigate('Create') }
         style={{marginRight: 10}}
-        underlayColor = "#009999"
+        underlayColor = "rgb(21, 160, 180)"
       >
         <Ionicons name="ios-add" size={ 38 } color="white" />
       </TouchableHighlight>
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: 40 + '%',
     margin: 2,
-    backgroundColor: '#009999'
+    backgroundColor: 'rgb(21, 160, 180)'
   },
   button1: {
     marginTop: 5

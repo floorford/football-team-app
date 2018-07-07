@@ -73,6 +73,7 @@ Teams.navigationOptions = {
         async (url) => WebBrowser.openBrowserAsync('http://www.5-a-side.com/summary-of-5-a-side-rules/')
       }
       style={{marginRight: 7}}
+      underlayColor="rgb(21, 160, 180)"
     >
       <Ionicons name="ios-football" size={ 36 } color="white" />
     </TouchableHighlight>
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
   },
   separator: {
     height: 1,
-    backgroundColor: '#009999',
+    backgroundColor: 'rgb(21, 160, 180)',
     marginTop: 30,
   }
 });
