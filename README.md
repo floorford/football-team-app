@@ -27,7 +27,7 @@ For the react app:
 
 8 - Run yarn/npm install 
 
-9 - To run the app locally with the vagrant api you will need to open the directory in your text editor, and uncomment the second baseURL line found in ./src/data/axios.js making sure the url matches your vagrant address
+9 - To run the app locally with the vagrant api you will need to open the directory in your text editor, and uncomment the second baseURL line found in ./src/data/axios.js making sure the url matches your vagrant address. The firt url is currently no longer hosted
 
 10 - Run yarn/npm start
 
@@ -39,4 +39,4 @@ For the react native app:
 
 12 - Use X-Code or another mobile phone simulator to run the app according to the directions given by the command terminal after the start command has completed
 
-13 - If you wish to run the mobile app on your phone, do so via the Expo app (https://expo.io/) and change over the baseURL to the web hosted API using the same method as step 11
+13 - To run the native app locally with a locally hosted backend change over the baseURL to the locally hosted API using the same method as step 9
